@@ -22,11 +22,12 @@ module.exports = function(passport, user) {
     passport.use("local-signup", new LocalStrategy(
         {
             usernameField: "username",
+            emailField: "email",
             passwordField: "password",
             passReqToCallback: true
         },
 
-        function(req, username, password, done) {
+        function(req, username, email, password, done) {
             var generateHash = function(password) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
@@ -44,7 +45,8 @@ module.exports = function(passport, user) {
                     var userPassword = generateHash(password);
                     var data = {
                         username: username,
-                        password: userPassword
+                        email: email,
+                        password: userPassword,
                     };
                     User.create(data).then(function(newUser, created) {
                         if (!newUser) {
