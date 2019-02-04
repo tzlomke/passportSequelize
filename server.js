@@ -16,7 +16,13 @@ app.use(passport.session());
 
 var env = require("dotenv").load();
 
+var models = require("./app/models");
 
+models.sequelize.sync().then(function() {
+    console.log("Database looks good!");
+}).catch(function(err) {
+    console.log(err, "Something went wrong with the Database Update!")
+});
 
 app.get("/", function(req, res) {
     res.send("Welcome to Passport with Sequelize!");
