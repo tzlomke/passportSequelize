@@ -18,6 +18,7 @@ module.exports = function(passport, user) {
         });
     });
 
+    // Signup
     passport.use("local-signup", new LocalStrategy(
         {
             usernameField: "username",
@@ -43,14 +44,14 @@ module.exports = function(passport, user) {
                     var userPassword = generateHash(password);
                     var data = {
                         username: username,
-                        password: password
+                        password: userPassword
                     };
                     User.create(data).then(function(newUser, created) {
                         if (!newUser) {
                             return done(null, false);
                         };
                         if (newUser) {
-                            return done(null, newUser);
+                            return done(null, newUser, created);
                         };
                     });
                 }
@@ -58,6 +59,7 @@ module.exports = function(passport, user) {
         }
     ));
 
+    // Signin
     passport.use("local-signin", new LocalStrategy(
         {
             usernameField: "username",
