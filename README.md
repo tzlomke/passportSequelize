@@ -5,16 +5,16 @@ passportSequelize is a reusable, tweakable framework for user authentication usi
 account creation, storage and sign-ins.
 
 ## Dependencies
-bcrypt-nodejs
-body-parser
-dotenv
-express
-express-handlebars
-express-session
-mysql2
-passport
-passport-local
-sequelize
+* bcrypt-nodejs
+* body-parser
+* dotenv
+* express
+* express-handlebars
+* express-session
+* mysql2
+* passport
+* passport-local
+* sequelize
 
 ### Author
 Taylor Zlomke | https://github.com/tzlomke
