@@ -7,6 +7,8 @@ var bodyParser = require("body-parser");
 var env = require("dotenv").load();
 var exphbs = require("express-handlebars");
 
+var PORT = process.env.PORT || 5000;
+
 // BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -44,11 +46,11 @@ models.sequelize.sync().then(function() {
     console.log(err, "Something went wrong with the Database Update!")
 });
 
-app.listen(5000, function(err) {
+app.listen(PORT, function(err) {
     if (err) {
         console.log(err);
     } else {
-        console.log("Site is Live!");
+        console.log("Site is Live on Port " + PORT);
     };
 });
 
